@@ -8,8 +8,8 @@ on:
    
 env:
   # Change these values if you have forked it for your own works
-  GitHubMail: "Gsweeh@gmail.com"
-  GitHubName: "gsweeh" 
+  GitHubMail: ${{ secrets.GITHUB_EMAIL }}
+  GitHubName: ${{ secrets.GITHUB_NAME }}
 
 jobs:
   build:
@@ -31,7 +31,7 @@ jobs:
 
       - name: Clone The Secret Mirror Repository
         run: |
-          git clone https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.MIRROR_REPOSLUG }} source
+          git clone https://github.com/dhruv-2015/anydl source
 
       - name: Compile The Mirroring Docker Container
         run: |
