@@ -31,10 +31,11 @@ jobs:
 
       - name: Clone The Secret Mirror Repository
         run: |
-          git clone https://github.com/dhruv-2015/anydl source
+          git clone https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com/${GitHubName}/${{ secrets.Bot_repo }} source
 
       - name: Compile The Mirroring Docker Container
         run: |
+          export config_URL=${{ secrets.config_URL }}
           cd source || exit 1
           docker container prune --force || true
           docker build . --rm --force-rm --compress --no-cache=true --pull --file Dockerfile -t mirror-bot
